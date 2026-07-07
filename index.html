@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexiGuide | Digital Governance & Legal Clarity</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section id="homePage" class="view">
+        <nav class="glass-nav">
+            <div class="logo">LEXIGUIDE <span>⚖️</span></div>
+            <div class="nav-links">
+                <a href="#">Governance</a>
+                <a href="#">SDG 16</a>
+                <button class="minimal-btn" onclick="showView('loginPage')">Sign In</button>
+            </div>
+        </nav>
+
+        <header class="editorial-hero">
+            <div class="hero-text">
+                <span class="eyebrow">Digital Governance Intelligence</span>
+                <h1>Clarity in every <br><em>statute.</em></h1>
+                <p>We transform complex institutional legislation into actionable roadmaps. Empowering citizens through transparency and AI-driven legal simplification.</p>
+                <div class="hero-actions">
+                    <button class="gold-btn" onclick="showView('loginPage')">Sign In to Portal</button>
+                    <button class="text-btn">View Case Studies —</button>
+                </div>
+            </div>
+            <div class="hero-image-frame">
+                <div class="hero-bg-overlay"></div>
+                <div class="stat-overlay">
+                    <strong>98.4%</strong>
+                    <span>Consistency Score</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="practice-areas">
+            <div class="area-card">
+                <span class="num">01</span>
+                <h3>Gazette Analysis</h3>
+                <p>Instant breakdown of government notifications into plain language.</p>
+            </div>
+            <div class="area-card">
+                <span class="num">02</span>
+                <h3>Civic Compliance</h3>
+                <p>Step-by-step guidance on institutional rights and citizen obligations.</p>
+            </div>
+            <div class="area-card">
+                <span class="num">03</span>
+                <h3>SDG 16 Metrics</h3>
+                <p>Aligning local governance with global peace and justice standards.</p>
+            </div>
+        </section>
+    </section>
+
+    <section id="loginPage" class="view hidden">
+        <div class="auth-wrapper">
+            <div class="legal-auth-card">
+                <div id="signInView">
+                    <h2>Sign In</h2>
+                    <p class="auth-subtitle">Authorized Citizen Access Only</p>
+                    <input type="email" placeholder="Institutional Email">
+                    <input type="password" placeholder="Key Phrase">
+                    <button class="gold-btn w-100" onclick="showView('dashboardPage')">Sign In</button>
+                    <p class="auth-toggle">New to LexiGuide? <a href="javascript:void(0)" onclick="toggleAuth(true)">Register here</a></p>
+                </div>
+
+                <div id="registerView" class="hidden">
+                    <h2>Create Account</h2>
+                    <p class="auth-subtitle">Secure Your Digital Identity</p>
+                    <input type="text" placeholder="Full Name">
+                    <input type="email" placeholder="Institutional Email">
+                    <input type="password" placeholder="Create Key Phrase">
+                    <button class="gold-btn w-100" onclick="showView('dashboardPage')">Create Account</button>
+                    <p class="auth-toggle">Already registered? <a href="javascript:void(0)" onclick="toggleAuth(false)">Sign in here</a></p>
+                </div>
+
+                <button class="back-link" onclick="showView('homePage')">Return to Home</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboardPage" class="view hidden">
+        <div class="split-dash">
+            <aside class="legal-sidebar">
+                <div class="side-logo">LEXIGUIDE</div>
+                <nav>
+                    <a href="#" class="active">Policy Engine</a>
+                    <a href="#">Archive</a>
+                    <a href="#" onclick="showView('homePage')">Logout</a>
+                </nav>
+            </aside>
+            <main class="dash-body">
+                <div class="dash-header">
+                    <div class="header-titles">
+                        <h2 id="dashTitle">Citizen Workspace</h2>
+                        <p id="dashSub">Welcome back</p>
+                    </div>
+                    <div class="header-meta">
+                        <div class="language-control">
+                            <label for="langSelect" id="langLabel">Output Preference:</label>
+                            <select id="langSelect" class="minimal-select">
+                                <option value="English">English</option>
+                                <option value="Hindi">हिन्दी (Hindi)</option>
+                                <option value="Kannada">ಕನ್ನಡ (Kannada)</option>
+                                <option value="Tamil">தமிழ் (Tamil)</option>
+                                <option value="Telugu">తెలుగు (Telugu)</option>
+                            </select>
+                        </div>
+                        <span class="tag">SDG 16 COMPLIANT</span>
+                    </div>
+                </div>
+                <div class="dash-grid">
+                    <div class="work-card">
+                        <h3 id="submitTitle">Policy Submission</h3>
+                        <textarea id="policyInput" placeholder="Enter legal text or policy clause..."></textarea>
+                        <input type="text" id="userProfile" placeholder="Your Profile (e.g. Resident of Karnataka)">
+                        <button id="submitBtn" class="gold-btn w-100">Generate Roadmap</button>
+                        
+                        <button id="clearBtn" class="text-btn" style="margin-top: 15px; width: 100%; border: 1px solid rgba(255,255,255,0.1); padding: 10px;">Clear Form</button>
+
+                        <div class="export-actions" style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                            <button id="downloadBtn" class="text-btn" style="display: none; font-size: 0.7rem; text-align: center; color: var(--accent);">Download Roadmap (.txt) ↓</button>
+                            <button id="printBtn" class="text-btn" style="display: none; font-size: 0.7rem; text-align: center; color: var(--accent);">Print / Save as PDF 📄</button>
+                        </div>
+                    </div>
+                    <div class="work-card results">
+                        <h3 id="resultTitle">Actionable Roadmap</h3>
+                        <div id="loading" class="hidden">Parsing Legislation...</div>
+                        <div id="timelineContainer" class="timeline-wrapper">
+                            <div id="resultBox" class="roadmap-content">Await results...</div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <button id="chatToggle" class="chat-fab"><span>💬</span></button>
+
+    <div id="chatDrawer" class="chat-drawer hidden">
+        <div class="chat-header">
+            <h4 id="chatTitle">Legal Assistant</h4>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+        <div id="chatMessages" class="chat-messages">
+            <div id="chatWelcomeMsg" class="message system">How can I help you with Constitutional rights, specific Acts, or legal sections today?</div>
+        </div>
+        <div class="chat-input-area" style="padding: 15px; display: flex; gap: 10px; border-top: 1px solid var(--border);">
+            <input type="text" id="chatInput" placeholder="Ask about Section 144, RTI, etc..." style="margin-bottom: 0;">
+            <button id="sendChatBtn" class="gold-btn" style="padding: 10px 20px; font-size: 0.8rem;">Send</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
